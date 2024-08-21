@@ -30,10 +30,11 @@ const getEskizToken = () => __awaiter(void 0, void 0, void 0, function* () {
         console.log("Error eskiz get token", error);
     }
 });
-const sendCodeToPhoneNumber = (_a) => __awaiter(void 0, [_a], void 0, function* ({ phone_number }) {
+const sendCodeToPhoneNumber = (_a) => __awaiter(void 0, [_a], void 0, function* ({ phone_number, code }) {
     const info = {
         mobile_phone: phone_number,
-        message: "Bu Eskiz dan test",
+        message: `Parol ${code} 
+               bu parolni xech kimga bermang!`,
         from: 4546,
     };
     try {

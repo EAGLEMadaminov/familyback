@@ -26,10 +26,11 @@ const getEskizToken = async () => {
   }
 };
 
-const sendCodeToPhoneNumber = async ({ phone_number }) => {
+const sendCodeToPhoneNumber = async ({ phone_number, code }) => {
   const info = {
     mobile_phone: phone_number,
-    message: "Bu Eskiz dan test",
+    message: `Parol ${code} 
+               bu parolni xech kimga bermang!`,
     from: 4546,
   };
   try {

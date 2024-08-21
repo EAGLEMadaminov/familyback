@@ -16,7 +16,7 @@ const sendCode = (req, res) => {
     const { phone_number, name } = req.body;
     const code = Math.floor(10000 + Math.random() * 90000).toString();
     let phone = phone_number.slice(1);
-    sendCodeToPhoneNumber({ phone_number: phone });
+    sendCodeToPhoneNumber({ phone_number: phone, code });
     const secret = process.env.JWT_SECRET;
     if (!secret) {
         return res.status(500).send("JWT secret was denied");

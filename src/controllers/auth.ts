@@ -7,9 +7,9 @@ dotenv.config();
 
 const sendCode = (req: Request, res: Response) => {
   const { phone_number, name } = req.body;
-  const code = Math.floor(10000 + Math.random() * 90000).toString();
+  const code: string = Math.floor(10000 + Math.random() * 90000).toString();
   let phone: string = phone_number.slice(1);
-  sendCodeToPhoneNumber({ phone_number: phone });
+  sendCodeToPhoneNumber({ phone_number: phone, code });
 
   const secret = process.env.JWT_SECRET;
   if (!secret) {

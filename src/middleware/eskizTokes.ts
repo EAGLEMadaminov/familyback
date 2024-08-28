@@ -29,8 +29,7 @@ const getEskizToken = async () => {
 const sendCodeToPhoneNumber = async ({ phone_number, code }) => {
   const info = {
     mobile_phone: phone_number,
-    message: `Parol ${code} 
-               bu parolni xech kimga bermang!`,
+    message: `vodiytezkor.uz saytiga ro‘yxatdan o‘tish uchun tasdiqlash kodi: ${code}`,
     from: 4546,
   };
   try {

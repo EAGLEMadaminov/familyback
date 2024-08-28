@@ -1,8 +1,8 @@
-import sendMessageToGroup from "../middleware/sendMessageToGroupt.js";
+import { sendMessageToGroup, sendLocation, } from "../middleware/sendMessageToGroupt.js";
 import dotenv from "dotenv";
 dotenv.config();
 const orderController = (req, res) => {
-    const { phone_number, first_name, last_name, comment, isDelivery, products } = req.body;
+    const { phone_number, first_name, last_name, comment, isDelivery, products, map, } = req.body;
     let message2 = "";
     let message = `Name ${first_name} ${last_name}\n`;
     message += `Telefon raqam: ${phone_number}\n\n`;
@@ -47,9 +47,15 @@ const orderController = (req, res) => {
     });
     if (message.trim() && hasFamilyProducts) {
         sendMessageToGroup(`-${process.env.CHAT_ID}`, message);
+        if (Boolean(map.lang) && Boolean(map.lat)) {
+            sendLocation(Number(map.lat), Number(map.lang), `-${process.env.CHAT_ID}`);
+        }
     }
     if (message2.trim() && hasShabboda) {
         sendMessageToGroup(`-${process.env.CHAT_ID_FOR_Shuxrat_aka}`, message2);
+        if (Boolean(map.lang) && Boolean(map.lat)) {
+            sendLocation(Number(map.lat), Number(map.lang), `-${process.env.CHAT_ID_FOR_Shuxrat_aka}`);
+        }
     }
     res.status(200).send({
         success: true,

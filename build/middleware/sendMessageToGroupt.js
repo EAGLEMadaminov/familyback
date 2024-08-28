@@ -9,13 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import axios from "axios";
 import dotenv from "dotenv";
+import TelegramBot from "node-telegram-bot-api";
 dotenv.config();
 const token = process.env.TGBOT_TOKEN;
+// location
+const bot = new TelegramBot(token, {
+    polling: true,
+});
+function sendLocation(latitude, longitude, chatId) {
+    bot
+        .sendLocation(chatId, latitude, longitude)
+        .then(() => {
+        console.log("Location sent successfully");
+    })
+        .catch((error) => {
+        console.error("Error sending location:", error);
+    });
+}
 const sendMessageToGroup = (chatId, message) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { data } = yield axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
             chat_id: chatId,
-            text: message
+            text: message,
         });
         if (data) {
             console.log("Message send");
@@ -25,4 +40,4 @@ const sendMessageToGroup = (chatId, message) => __awaiter(void 0, void 0, void 0
         console.log("Send message groupt error", error);
     }
 });
-export default sendMessageToGroup;
+export { sendMessageToGroup, sendLocation };

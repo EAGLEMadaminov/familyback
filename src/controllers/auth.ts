@@ -2,12 +2,14 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import { sendCodeToPhoneNumber } from "../middleware/eskizTokes.js";
+import { randomInt } from "crypto";
 import dotenv from "dotenv";
 dotenv.config();
 
 const sendCode = (req: Request, res: Response) => {
   const { phone_number, name } = req.body;
-  const code: string = Math.floor(10000 + Math.random() * 90000).toString();
+  const code: string = randomInt(10000, 100000).toString();
+  console.log("Generated Authentication Code:", code);
   let phone: string = phone_number.slice(1);
   sendCodeToPhoneNumber({ phone_number: phone, code });
 
@@ -22,7 +24,6 @@ const sendCode = (req: Request, res: Response) => {
 
   try {
     res.status(200).send({ codeToken });
-    console.log(code);
   } catch (error) {
     res.status(500).send({ error: "Internal server error" });
   }

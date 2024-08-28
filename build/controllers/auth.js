@@ -10,11 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import { sendCodeToPhoneNumber } from "../middleware/eskizTokes.js";
+import { randomInt } from "crypto";
 import dotenv from "dotenv";
 dotenv.config();
 const sendCode = (req, res) => {
     const { phone_number, name } = req.body;
-    const code = Math.floor(10000 + Math.random() * 90000).toString();
+    const code = randomInt(10000, 100000).toString();
+    console.log("Generated Authentication Code:", code);
     let phone = phone_number.slice(1);
     sendCodeToPhoneNumber({ phone_number: phone, code });
     const secret = process.env.JWT_SECRET;
@@ -26,7 +28,6 @@ const sendCode = (req, res) => {
     });
     try {
         res.status(200).send({ codeToken });
-        console.log(code);
     }
     catch (error) {
         res.status(500).send({ error: "Internal server error" });

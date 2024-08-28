@@ -7,7 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import axios from "axios";
 import dotenv from "dotenv";
 import TelegramBot from "node-telegram-bot-api";
 dotenv.config();
@@ -28,16 +27,11 @@ function sendLocation(latitude, longitude, chatId) {
 }
 const sendMessageToGroup = (chatId, message) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { data } = yield axios.post(`https://api.telegram.org/bot${token}/sendMessage`, {
-            chat_id: chatId,
-            text: message,
-        });
-        if (data) {
-            console.log("Message send");
-        }
+        yield bot.sendMessage(chatId, message);
+        console.log("Message sent");
     }
     catch (error) {
-        console.log("Send message groupt error", error);
+        console.log("Send message group error", error);
     }
 });
 export { sendMessageToGroup, sendLocation };

@@ -27,7 +27,6 @@ const authenticatedToken = (req, res, next) => __awaiter(void 0, void 0, void 0,
                 phoneNumber: decodedUser.phone_number,
             });
             if (!userFromDB) {
-                console.log("User not found in database with phone number:", decodedUser.phone_number);
                 return res.status(404).send("User not found");
             }
             req.user = userFromDB;

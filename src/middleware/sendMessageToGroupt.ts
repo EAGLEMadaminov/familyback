@@ -1,4 +1,3 @@
-import axios from "axios";
 import dotenv from "dotenv";
 import TelegramBot from "node-telegram-bot-api";
 dotenv.config();
@@ -22,18 +21,10 @@ function sendLocation(latitude: number, longitude: number, chatId: string) {
 
 const sendMessageToGroup = async (chatId: string, message: string) => {
   try {
-    const { data } = await axios.post(
-      `https://api.telegram.org/bot${token}/sendMessage`,
-      {
-        chat_id: chatId,
-        text: message,
-      }
-    );
-    if (data) {
-      console.log("Message send");
-    }
+    await bot.sendMessage(chatId, message);
+    console.log("Message sent");
   } catch (error) {
-    console.log("Send message groupt error", error);
+    console.log("Send message group error", error);
   }
 };
 export { sendMessageToGroup, sendLocation };

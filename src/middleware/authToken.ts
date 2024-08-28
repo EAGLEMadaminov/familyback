@@ -33,10 +33,6 @@ const authenticatedToken = async (
       });
 
       if (!userFromDB) {
-        console.log(
-          "User not found in database with phone number:",
-          decodedUser.phone_number
-        );
         return res.status(404).send("User not found");
       }
 

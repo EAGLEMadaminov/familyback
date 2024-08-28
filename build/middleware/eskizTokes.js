@@ -33,8 +33,7 @@ const getEskizToken = () => __awaiter(void 0, void 0, void 0, function* () {
 const sendCodeToPhoneNumber = (_a) => __awaiter(void 0, [_a], void 0, function* ({ phone_number, code }) {
     const info = {
         mobile_phone: phone_number,
-        message: `Parol ${code} 
-               bu parolni xech kimga bermang!`,
+        message: `vodiytezkor.uz saytiga ro‘yxatdan o‘tish uchun tasdiqlash kodi: ${code}`,
         from: 4546,
     };
     try {

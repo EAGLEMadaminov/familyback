@@ -10,6 +10,7 @@ interface takenProduct {
   title: string;
   price: string;
   restaurant_id: number;
+  id: number;
 }
 
 const orderController = (req: Request, res: Response) => {
@@ -60,7 +61,7 @@ const orderController = (req: Request, res: Response) => {
       hasShabboda = true;
     }
     const productInfo =
-      `Maxsulot nomi: ${product.title}\n` +
+      `Maxsulot nomi: ${product.title} ${product.id}\n` +
       `Maxsulot narxi: ${product.price}\n`;
 
     if (product.restaurant_id.toString() === process.env.CHAT_ID) {

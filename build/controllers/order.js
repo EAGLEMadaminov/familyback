@@ -36,7 +36,7 @@ const orderController = (req, res) => {
         else if ((product === null || product === void 0 ? void 0 : product.restaurant_id) === Number(process.env.CHAT_ID_FOR_Shuxrat_aka)) {
             hasShabboda = true;
         }
-        const productInfo = `Maxsulot nomi: ${product.title}\n` +
+        const productInfo = `Maxsulot nomi: ${product.title} ${product.id}\n` +
             `Maxsulot narxi: ${product.price}\n`;
         if (product.restaurant_id.toString() === process.env.CHAT_ID) {
             message += productInfo;

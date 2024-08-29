@@ -19,9 +19,12 @@ const authenticatedToken = async (
 
   if (!token) return res.status(401).send("Access denied");
 
+  console.log("Resived token ", token);
+
   jwt.verify(token, process.env.JWT_SECRET as string, async (err, user) => {
     if (err) {
       console.log("JWT Verification Error:", err.message);
+      console.log("Received token:", token); // Debugging line to check the token
       return res.status(403).send("Forbidden");
     }
 

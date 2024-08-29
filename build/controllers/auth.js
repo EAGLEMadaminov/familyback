@@ -24,7 +24,7 @@ const sendCode = (req, res) => {
         return res.status(500).send("JWT secret was denied");
     }
     const codeToken = jwt.sign({ phone_number, code }, secret, {
-        expiresIn: "2m",
+        expiresIn: "10m",
     });
     try {
         res.status(200).send({ codeToken });

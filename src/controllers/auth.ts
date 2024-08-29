@@ -21,6 +21,7 @@ const sendCode = (req: Request, res: Response) => {
   const codeToken = jwt.sign({ phone_number, code }, secret, {
     expiresIn: "10m",
   });
+  console.log(codeToken);
 
   try {
     res.status(200).send({ codeToken });
@@ -75,3 +76,24 @@ const verifyCode = async (req: Request, res: Response) => {
 };
 
 export { sendCode, verifyCode };
+
+const secret = process.env.JWT_SECRET as string;
+
+if (!secret) {
+  console.error("JWT_SECRET is not defined or incorrectly loaded.");
+} else {
+  console.log("JWT Secret loaded successfully.");
+}
+
+async function verifyMyToken() {
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9udW1iZXIiOiIrOTk4OTEyMTMyMjEzIiwiY29kZSI6IjU0NjE1IiwiaWF0IjoxNzI0OTI1NzM5LCJleHAiOjE3MjQ5MjYzMzl9.5bZ3-CroxL-7FvvEVg49kdKZgqkgSQS8UL2ntib6vIc";
+  try {
+    const decoded = jwt.verify(token, secret);
+    console.log("Decoded Token:", decoded);
+  } catch (error) {
+    console.error("Token Verification Error:", error.message);
+  }
+}
+
+verifyMyToken();

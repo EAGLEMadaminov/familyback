@@ -19,7 +19,7 @@ const sendCode = (req: Request, res: Response) => {
   }
 
   const codeToken = jwt.sign({ phone_number, code }, secret, {
-    expiresIn: "2m",
+    expiresIn: "10m",
   });
 
   try {

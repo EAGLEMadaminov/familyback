@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 import connectDB from "./config/config.js";
 import { getEskizToken } from "./middleware/eskizTokes.js";
 getEskizToken();
@@ -29,3 +30,5 @@ app.use("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+

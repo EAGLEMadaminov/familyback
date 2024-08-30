@@ -1,9 +1,6 @@
 import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import User from "../models/User.js";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 interface JwtPayload {
   phone_number: string;
@@ -24,7 +21,6 @@ const authenticatedToken = async (
   jwt.verify(token, process.env.JWT_SECRET as string, async (err, user) => {
     if (err) {
       console.log("JWT Verification Error:", err.message);
-      console.log("Received token:", token); // Debugging line to check the token
       return res.status(403).send("Forbidden");
     }
 

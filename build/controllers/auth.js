@@ -71,23 +71,3 @@ const verifyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 export { sendCode, verifyCode };
-const secret = process.env.JWT_SECRET;
-if (!secret) {
-    console.error("JWT_SECRET is not defined or incorrectly loaded.");
-}
-else {
-    console.log("JWT Secret loaded successfully.");
-}
-function verifyMyToken() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwaG9uZV9udW1iZXIiOiIrOTk4OTEyMTMyMjEzIiwiY29kZSI6IjU0NjE1IiwiaWF0IjoxNzI0OTI1NzM5LCJleHAiOjE3MjQ5MjYzMzl9.5bZ3-CroxL-7FvvEVg49kdKZgqkgSQS8UL2ntib6vIc";
-        try {
-            const decoded = jwt.verify(token, secret);
-            console.log("Decoded Token:", decoded);
-        }
-        catch (error) {
-            console.error("Token Verification Error:", error.message);
-        }
-    });
-}
-verifyMyToken();

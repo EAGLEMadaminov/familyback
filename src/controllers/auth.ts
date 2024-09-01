@@ -53,6 +53,8 @@ const verifyCode = async (req: Request, res: Response) => {
       return res.status(400).send("Incorrect code or phone number");
     }
 
+    console.log("Log successfully verified");
+
     const access_token = jwt.sign({ phone_number }, secret, {
       expiresIn: "30d",
     });

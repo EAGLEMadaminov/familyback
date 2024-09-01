@@ -16,7 +16,6 @@ dotenv.config();
 const sendCode = (req, res) => {
     const { phone_number, name } = req.body;
     const code = randomInt(10000, 100000).toString();
-    console.log("Generated Authentication Code:", code);
     let phone = phone_number.slice(1);
     sendCodeToPhoneNumber({ phone_number: phone, code });
     const secret = process.env.JWT_SECRET;
@@ -26,7 +25,6 @@ const sendCode = (req, res) => {
     const codeToken = jwt.sign({ phone_number, code }, secret, {
         expiresIn: "10m",
     });
-    console.log(codeToken);
     try {
         res.status(200).send({ codeToken });
     }

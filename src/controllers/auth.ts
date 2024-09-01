@@ -9,7 +9,6 @@ dotenv.config();
 const sendCode = (req: Request, res: Response) => {
   const { phone_number, name } = req.body;
   const code: string = randomInt(10000, 100000).toString();
-  console.log("Generated Authentication Code:", code);
   let phone: string = phone_number.slice(1);
   sendCodeToPhoneNumber({ phone_number: phone, code });
 
@@ -21,7 +20,6 @@ const sendCode = (req: Request, res: Response) => {
   const codeToken = jwt.sign({ phone_number, code }, secret, {
     expiresIn: "10m",
   });
-  console.log(codeToken);
 
   try {
     res.status(200).send({ codeToken });
@@ -52,8 +50,6 @@ const verifyCode = async (req: Request, res: Response) => {
     if (decoded.code !== code || decoded.phone_number !== phone_number) {
       return res.status(400).send("Incorrect code or phone number");
     }
-
-    console.log("Log successfully verified", decoded);
 
     const access_token = jwt.sign({ phone_number }, secret, {
       expiresIn: "30d",

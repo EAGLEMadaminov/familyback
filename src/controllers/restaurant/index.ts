@@ -1,7 +1,8 @@
-import { sendCode, verifyCode, signUp, signIn } from "./auth.js";
-import orderController from "./order.js";
-import { getUserInfo } from "./user.js";
-import imageController from "./imageController.js";
+import {
+  updateRestaurant,
+  getAllRestaurants,
+  addRestaurantAddress,
+} from "./restaurantController.js";
 import {
   createCategory,
   deleteCategory,
@@ -9,6 +10,9 @@ import {
   getCategoriesByRestaurantID,
   getCategoryById,
   getAllCategory,
+} from "./categoryController.js";
+
+import {
   createProduct,
   getProductById,
   updateProduct,
@@ -16,33 +20,23 @@ import {
   getProductsByCategory,
   getProductsByRestaurant,
   getAllProducts,
-  updateRestaurant,
-  getAllRestaurants,
-  addRestaurantAddress,
-} from "./restaurant/index.js";
+} from "./productController.js";
 
 export {
-  sendCode,
-  verifyCode,
-  orderController,
-  getUserInfo,
-  signUp,
-  signIn,
   createCategory,
   deleteCategory,
   updateCategory,
-  getCategoriesByRestaurantID,
   getCategoryById,
+  getCategoriesByRestaurantID,
   getAllCategory,
   createProduct,
+  getAllProducts,
   getProductById,
   updateProduct,
   deleteProduct,
   getProductsByCategory,
   getProductsByRestaurant,
-  getAllProducts,
   updateRestaurant,
   getAllRestaurants,
-  imageController,
   addRestaurantAddress,
 };

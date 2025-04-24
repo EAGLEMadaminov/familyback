@@ -47,7 +47,7 @@ const orderController = (req, res) => {
     });
     if (message.trim() && hasFamilyProducts) {
         sendMessageToGroup(`-${process.env.CHAT_ID}`, message);
-        if (Boolean(map.lang) && Boolean(map.lat)) {
+        if (Boolean(map === null || map === void 0 ? void 0 : map.lang) && Boolean(map === null || map === void 0 ? void 0 : map.lat)) {
             sendLocation(Number(map.lat), Number(map.lang), `-${process.env.CHAT_ID}`);
         }
     }
